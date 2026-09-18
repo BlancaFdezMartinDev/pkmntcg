@@ -26,10 +26,6 @@ struct CardItem: View {
             case .success(let image):
                 image
                     .resizable()
-                    /*.aspectRatio(
-                        mode == .full ? 0.716 : 1,
-                        contentMode: .fit
-                    )*/
                     .modifier(
                         CardImageModifier(mode: mode)
                     )
