@@ -1,0 +1,26 @@
+{
+  "sourceLanguage" : "es",
+  "strings" : {
+    "Buscar..." : {
+
+    },
+    "search_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search cards"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar Cartas"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.2"
+}

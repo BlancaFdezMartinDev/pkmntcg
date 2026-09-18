@@ -14,7 +14,8 @@ struct pkmntcgApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          //TODO: crear splash
+            SearchView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
