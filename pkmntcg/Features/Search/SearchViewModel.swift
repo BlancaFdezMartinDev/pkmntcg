@@ -11,6 +11,7 @@ import SwiftUI
 class SearchViewModel {
   var searchText: String = ""
   let getIllustratorCardsUseCase: any GetIllustratorCardsUseCaseProtocol
+  var cards: [IllustratorCard] = []
   
   init(getIllustratorCardsUseCase: any GetIllustratorCardsUseCaseProtocol) {
     self.getIllustratorCardsUseCase = getIllustratorCardsUseCase
@@ -18,8 +19,8 @@ class SearchViewModel {
   
   func search() {
     Task {
-      let cards = try await getIllustratorCardsUseCase.execute(name: searchText)
-      print(cards)
+      let result = try await getIllustratorCardsUseCase.execute(name: searchText)
+      self.cards = result.cards
     }
   }
 }

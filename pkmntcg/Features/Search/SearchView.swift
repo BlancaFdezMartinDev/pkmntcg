@@ -8,7 +8,8 @@ import SwiftUI
 
 struct SearchView: View {
   @State private var viewModel = SearchViewModel(getIllustratorCardsUseCase: GetIllustratorCardsUseCase())
-
+  @State private var isIllustrationOnly = false
+  
   var body: some View {
     HStack{
       CustomText(text: "search_title")
@@ -19,7 +20,25 @@ struct SearchView: View {
     CustomSearchBar(searchText: $viewModel.searchText) {
       viewModel.search()
     }
-    Spacer()
+    Picker("Visualización", selection: $isIllustrationOnly) {
+      Text("Carta")
+        .tag(false)
+      
+      Text("Ilustración")
+        .tag(true)
+    }
+    .pickerStyle(.segmented)
+    .padding(.horizontal)
+    ScrollView {
+      CustomGrid(items: viewModel.cards, id: \.id) { card in
+        CardItem(
+          image: card.imageURL(),
+          mode: isIllustrationOnly
+          ? CardItem.Mode.illustration
+          : .full
+        )
+      }
+    }
   }
 }
 

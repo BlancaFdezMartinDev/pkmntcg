@@ -2,7 +2,7 @@ struct Card: Codable {
     let category: String
     let id: String
     let illustrator: String
-    let image: String
+    let image: String?
     let localId: String
     let name: String
     let rarity: String
