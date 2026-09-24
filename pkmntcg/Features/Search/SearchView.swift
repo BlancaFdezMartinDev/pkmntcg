@@ -13,6 +13,7 @@ struct SearchView: View {
   var body: some View {
     HStack{
       CustomText(text: "search_title")
+        .font(.title)
         .padding(.top, 20)
         .padding(.leading, 20)
       Spacer()
@@ -30,13 +31,16 @@ struct SearchView: View {
     .pickerStyle(.segmented)
     .padding(.horizontal)
     ScrollView {
-      CustomGrid(items: viewModel.cards, id: \.id) { card in
+      CustomGrid(items: viewModel.visibleCards, id: \.id) { card in
         CardItem(
           image: card.imageURL(),
           mode: isIllustrationOnly
           ? CardItem.Mode.illustration
           : .full
         )
+        .onAppear {
+          viewModel.loadMoreIfNeeded(current: card)
+        }
       }
     }
   }
