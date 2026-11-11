@@ -24,8 +24,8 @@ struct SearchView: View {
       title: "search_display_mode",
       selection: $viewModel.displayMode,
       options: [
-        .init(value: .full, title: "search_mode_full"),
-        .init(value: .illustration, title: "search_mode_illustration")
+        .init(value: .illustration, title: "search_mode_illustration"),
+        .init(value: .full, title: "search_mode_full")
       ]
     )
     ScrollView {

@@ -9,7 +9,7 @@ import SwiftUI
 @Observable
 class SearchViewModel {
   var searchText: String = ""
-  var displayMode: CustomCardItem.Mode = .full
+  var displayMode: CustomCardItem.Mode = .illustration
   let getIllustratorCardsUseCase: any GetIllustratorCardsUseCaseProtocol
   var cards: [IllustratorCard] = []
   var visibleCards: [IllustratorCard] = []
