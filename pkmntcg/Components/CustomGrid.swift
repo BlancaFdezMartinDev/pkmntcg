@@ -6,41 +6,50 @@
 //
 import SwiftUI
 
+struct CustomGridStyle {
+  static let standard = CustomGridStyle(
+    minimumItemWidth: CustomLayout.gridItemMinimumWidth,
+    spacing: CustomSize.size04,
+    horizontalPadding: CustomSize.size04
+  )
+
+  let minimumItemWidth: CGFloat
+
+  let spacing: CGFloat
+
+  let horizontalPadding: CGFloat
+}
+
 struct CustomGrid<Item, ID: Hashable, Content: View>: View {
-    
-    let items: [Item]
-    let columns: Int
-    let id: KeyPath<Item, ID>
-    let content: (Item) -> Content
-    
-    init(
-        items: [Item],
-        columns: Int = 2,
-        id: KeyPath<Item, ID>,
-        @ViewBuilder content: @escaping (Item) -> Content
+  let items: [Item]
+
+  let id: KeyPath<Item, ID>
+
+  let style: CustomGridStyle
+
+  let content: (Item) -> Content
+
+  init(
+    items: [Item],
+    id: KeyPath<Item, ID>,
+    style: CustomGridStyle = .standard,
+    @ViewBuilder content: @escaping (Item) -> Content
+  ) {
+    self.items = items
+    self.id = id
+    self.style = style
+    self.content = content
+  }
+
+  var body: some View {
+    LazyVGrid(
+      columns: [GridItem(.adaptive(minimum: style.minimumItemWidth), spacing: style.spacing)],
+      spacing: style.spacing
     ) {
-        self.items = items
-        self.columns = columns
-        self.id = id
-        self.content = content
+      ForEach(items, id: id) { item in
+        content(item)
+      }
     }
-    
-    var body: some View {
-        LazyVGrid(
-            columns: gridColumns,
-            spacing: 16
-        ) {
-            ForEach(items, id: id) { item in
-                content(item)
-            }
-        }
-        .padding(.horizontal, 12)
-    }
-    
-    private var gridColumns: [GridItem] {
-        Array(
-            repeating: GridItem(.flexible(), spacing: 12),
-            count: columns
-        )
-    }
+    .padding(.horizontal, style.horizontalPadding)
+  }
 }

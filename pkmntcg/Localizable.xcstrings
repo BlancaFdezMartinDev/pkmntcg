@@ -1,25 +1,47 @@
 {
   "sourceLanguage" : "es",
   "strings" : {
-    "Buscar..." : {
+    "Carta" : {
 
     },
-    "search_title" : {
+    "Ilustración" : {
+
+    },
+    "search_placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search cards"
+            "value" : "Search..."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar Cartas"
+            "value" : "Buscar..."
           }
         }
       }
+    },
+    "search_title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Search"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Búsqueda"
+          }
+        }
+      }
+    },
+    "Visualización" : {
+
     }
   },
   "version" : "1.2"
