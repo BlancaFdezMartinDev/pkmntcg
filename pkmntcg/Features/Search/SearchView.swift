@@ -8,8 +8,7 @@ import SwiftUI
 
 struct SearchView: View {
   @State private var viewModel = SearchViewModel(getIllustratorCardsUseCase: GetIllustratorCardsUseCase())
-  @State private var isIllustrationOnly = false
-  
+
   var body: some View {
     HStack {
       CustomText(text: "search_title", font: CustomFont.title)
@@ -29,14 +28,31 @@ struct SearchView: View {
       ]
     )
     ScrollView {
-      CustomGrid(items: viewModel.visibleCards, id: \.id) { card in
-        CustomCardItem(
-          image: card.imageURL(),
-          mode: viewModel.displayMode,
-          illustrationCrop: CardIllustrationCrop(layout: card.layout)
-        )
-        .onAppear {
-          viewModel.loadMoreIfNeeded(current: card)
+      if viewModel.displayMode == .illustration {
+        CustomMasonryGrid(
+          items: viewModel.visibleCards,
+          id: \.id,
+          heightRatio: { CardIllustrationCrop(layout: $0.layout).cellHeightRatio }
+        ) { card in
+          CustomCardItem(
+            image: card.imageURL(),
+            mode: viewModel.displayMode,
+            illustrationCrop: CardIllustrationCrop(layout: card.layout)
+          )
+          .onAppear {
+            viewModel.loadMoreIfNeeded(current: card)
+          }
+        }
+      } else {
+        CustomGrid(items: viewModel.visibleCards, id: \.id) { card in
+          CustomCardItem(
+            image: card.imageURL(),
+            mode: viewModel.displayMode,
+            illustrationCrop: CardIllustrationCrop(layout: card.layout)
+          )
+          .onAppear {
+            viewModel.loadMoreIfNeeded(current: card)
+          }
         }
       }
     }

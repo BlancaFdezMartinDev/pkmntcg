@@ -9,7 +9,7 @@ import SwiftUI
 struct CustomGridStyle {
   static let standard = CustomGridStyle(
     minimumItemWidth: CustomLayout.gridItemMinimumWidth,
-    spacing: CustomSize.size04,
+    spacing: CustomSize.size02,
     horizontalPadding: CustomSize.size04
   )
 

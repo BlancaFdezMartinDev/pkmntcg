@@ -37,3 +37,9 @@ extension CardIllustrationCrop {
     }
   }
 }
+
+extension CardIllustrationCrop {
+  var cellHeightRatio: CGFloat {
+    (height / width) / CardIllustrationCrop.imageAspectRatio
+  }
+}
