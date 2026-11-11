@@ -12,20 +12,22 @@ struct Illustrator: Codable {
 }
 
 struct IllustratorCard: Codable {
+  enum CodingKeys: String, CodingKey {
+    case id, localId, name, image
+  }
   let id: String
   let localId: String
   let name: String
   let image: String?
-  
-  func imageURL(
-      quality: ImageQuality = .low,
-      format: ImageFormat = .webp
-  ) -> URL? {
-      guard let image else { return nil }
+  var layout: CardLayout = .standard
 
-      return URL(
-          string: "\(image)/\(quality.rawValue).\(format.rawValue)"
-      )
+  func with(layout: CardLayout) -> IllustratorCard {
+    IllustratorCard(id: id, localId: localId, name: name, image: image, layout: layout)
+  }
+
+  func imageURL(quality: ImageQuality = .low, format: ImageFormat = .webp) -> URL? {
+    guard let image else { return nil }
+    return URL(string: "\(image)/\(quality.rawValue).\(format.rawValue)")
   }
 }
 

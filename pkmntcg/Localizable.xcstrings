@@ -1,11 +1,53 @@
 {
   "sourceLanguage" : "es",
   "strings" : {
-    "Carta" : {
-
+    "search_display_mode" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo"
+          }
+        }
+      }
     },
-    "Ilustración" : {
-
+    "search_mode_full" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cards"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cartas"
+          }
+        }
+      }
+    },
+    "search_mode_illustration" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illustrations"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilustraciones"
+          }
+        }
+      }
     },
     "search_placeholder" : {
       "extractionState" : "manual",
@@ -39,9 +81,6 @@
           }
         }
       }
-    },
-    "Visualización" : {
-
     }
   },
   "version" : "1.2"

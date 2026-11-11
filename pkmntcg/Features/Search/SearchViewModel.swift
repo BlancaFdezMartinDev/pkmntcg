@@ -4,12 +4,12 @@
 //
 //  Created by blanca.a.fernandez on 15/09/2026.
 //
-
 import SwiftUI
 
 @Observable
 class SearchViewModel {
   var searchText: String = ""
+  var displayMode: CustomCardItem.Mode = .full
   let getIllustratorCardsUseCase: any GetIllustratorCardsUseCaseProtocol
   var cards: [IllustratorCard] = []
   var visibleCards: [IllustratorCard] = []

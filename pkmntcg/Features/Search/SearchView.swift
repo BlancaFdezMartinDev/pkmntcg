@@ -11,32 +11,29 @@ struct SearchView: View {
   @State private var isIllustrationOnly = false
   
   var body: some View {
-    HStack{
+    HStack {
       CustomText(text: "search_title", font: CustomFont.title)
-        .font(.title)
-        .padding(.top, 20)
-        .padding(.leading, 20)
+        .padding(.top, CustomSize.size04)
+        .padding(.leading, CustomSize.size04)
       Spacer()
     }
     CustomSearchBar(searchText: $viewModel.searchText) {
       viewModel.search()
     }
-    Picker("Visualización", selection: $isIllustrationOnly) {
-      Text("Carta")
-        .tag(false)
-      
-      Text("Ilustración")
-        .tag(true)
-    }
-    .pickerStyle(.segmented)
-    .padding(.horizontal)
+    CustomSegmentedControl(
+      title: "search_display_mode",
+      selection: $viewModel.displayMode,
+      options: [
+        .init(value: .full, title: "search_mode_full"),
+        .init(value: .illustration, title: "search_mode_illustration")
+      ]
+    )
     ScrollView {
       CustomGrid(items: viewModel.visibleCards, id: \.id) { card in
         CustomCardItem(
           image: card.imageURL(),
-          mode: isIllustrationOnly
-          ? CustomCardItem.Mode.illustration
-          : .full
+          mode: viewModel.displayMode,
+          illustrationCrop: CardIllustrationCrop(layout: card.layout)
         )
         .onAppear {
           viewModel.loadMoreIfNeeded(current: card)

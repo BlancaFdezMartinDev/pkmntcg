@@ -26,3 +26,14 @@ struct CardIllustrationCrop {
     width * Self.imageAspectRatio / height
   }
 }
+
+extension CardIllustrationCrop {
+  init(layout: CardLayout) {
+    switch layout {
+    case .standard:
+      self = .standard
+    case .fullArt:
+      self = .fullArt
+    }
+  }
+}

@@ -17,8 +17,11 @@ final class GetIllustratorCardsUseCase: GetIllustratorCardsUseCaseProtocol {
     }
 
     func execute(name: String) async throws -> Illustrator {
-        let illustrator = try await repository.getIllustrator(name: name)
-      return illustrator
-        // Aquí podrías añadir lógica extra: filtrar, ordenar, cachear, etc.
+        async let illustrator = repository.getIllustrator(name: name)
+        async let fullArtIds = repository.getCardIds(illustrator: name, rarities: FullArtRarities.all)
+        let result = try await illustrator
+        let ids = try await fullArtIds
+        let cards = result.cards.map { $0.with(layout: ids.contains($0.id) ? .fullArt : .standard) }
+        return Illustrator(name: result.name, cards: cards)
     }
 }
