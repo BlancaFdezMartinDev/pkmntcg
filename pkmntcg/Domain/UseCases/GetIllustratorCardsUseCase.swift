@@ -5,14 +5,14 @@
 //  Created by blanca.a.fernandez on 18/09/2026.
 //
 
-protocol GetIllustratorCardsUseCaseProtocol {
+protocol GetIllustratorCardsUseCaseContract {
   func execute(name: String) async throws -> Illustrator
 }
 
-final class GetIllustratorCardsUseCase: GetIllustratorCardsUseCaseProtocol {
-  private let repository: TCGDexRepositoryProtocol
+final class GetIllustratorCardsUseCase: GetIllustratorCardsUseCaseContract {
+  private let repository: TCGDexRepositoryContract
   
-  init(repository: TCGDexRepositoryProtocol = TCGDexRepository()) {
+  init(repository: TCGDexRepositoryContract) {
     self.repository = repository
   }
   
@@ -23,7 +23,7 @@ final class GetIllustratorCardsUseCase: GetIllustratorCardsUseCaseProtocol {
     let ids = try await fullArtIds
     let cards = result.cards.map { $0.with(layout: ids.contains($0.id) ? .fullArt : .standard) }
     let cardsWithIllustration = cards.filter {
-      $0.image != nil
+      $0.imageBaseURL != nil
     }
     return Illustrator(name: result.name, cards: cardsWithIllustration)
   }

@@ -15,7 +15,9 @@ struct pkmntcgApp: App {
     var body: some Scene {
         WindowGroup {
           //TODO: crear splash
-            SearchView()
+          let useCasesFactory = UseCasesFactory(tcgDexRepository: TCGDexRepository())
+          let viewModelFactory = ViewModelFactory(useCasesFactory: useCasesFactory)
+          SearchView(viewModel: viewModelFactory.makeSearchViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

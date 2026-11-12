@@ -8,6 +8,6 @@
 import SwiftUI
 
 enum CustomLayout {
-  static let gridItemMinimumWidth: CGFloat = 150
+  static let gridItemMinimumWidth: CGFloat = 160
   static let minimumColumnCount = 1
 }

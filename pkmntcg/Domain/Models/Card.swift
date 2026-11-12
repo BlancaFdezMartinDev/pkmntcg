@@ -1,12 +1,14 @@
-struct Card: Codable {
+import Foundation
+
+struct Card {
     let category: String
     let id: String
     let illustrator: String
-    let image: String?
+    let imageBaseURL: URL?
     let localId: String
     let name: String
     let rarity: String
-    let set: Set
+    let set: CardSet
     let variants: Variants
     let hp: Int
     let types: [String]
@@ -18,9 +20,4 @@ struct Card: Codable {
     let retreat: Int
     let regulationMark: String
     let legal: Legal
-}
-
-struct Legal: Codable {
-    let standard: Bool
-    let expanded: Bool
 }

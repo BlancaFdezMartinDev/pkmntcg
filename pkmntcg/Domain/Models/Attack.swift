@@ -5,7 +5,7 @@
 //  Created by blanca.a.fernandez on 18/09/2026.
 //
 
-struct Attack: Codable {
+struct Attack {
     let cost: [String]
     let name: String
     let effect: String

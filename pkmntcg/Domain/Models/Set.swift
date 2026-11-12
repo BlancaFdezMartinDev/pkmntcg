@@ -5,7 +5,7 @@
 //  Created by blanca.a.fernandez on 18/09/2026.
 //
 
-struct Set: Codable {
+struct CardSet {
     let cardCount: CardCount
     let id: String
     let logo: String
@@ -13,7 +13,7 @@ struct Set: Codable {
     let symbol: String
 }
 
-struct CardCount: Codable {
+struct CardCount {
     let official: Int
     let total: Int
 }

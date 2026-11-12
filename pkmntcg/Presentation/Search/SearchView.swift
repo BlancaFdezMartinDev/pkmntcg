@@ -7,7 +7,8 @@
 import SwiftUI
 
 struct SearchView: View {
-  @State private var viewModel = SearchViewModel(getIllustratorCardsUseCase: GetIllustratorCardsUseCase())
+  
+  @State var viewModel:  SearchViewModel
 
   var body: some View {
     HStack {
@@ -60,5 +61,7 @@ struct SearchView: View {
 }
 
 #Preview {
-  SearchView()
+  let useCasesFactory = UseCasesFactory(tcgDexRepository: TCGDexRepository())
+  let viewModelFactory = ViewModelFactory(useCasesFactory: useCasesFactory)
+  SearchView(viewModel: viewModelFactory.makeSearchViewModel())
 }

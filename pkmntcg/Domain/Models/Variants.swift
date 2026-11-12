@@ -5,7 +5,7 @@
 //  Created by blanca.a.fernandez on 18/09/2026.
 //
 
-struct Variants: Codable {
+struct Variants {
     let firstEdition: Bool
     let holo: Bool
     let normal: Bool

@@ -10,18 +10,18 @@ import SwiftUI
 class SearchViewModel {
   var searchText: String = ""
   var displayMode: CustomCardItem.Mode = .illustration
-  let getIllustratorCardsUseCase: any GetIllustratorCardsUseCaseProtocol
+  let useCases: SearchUseCases
   var cards: [IllustratorCard] = []
   var visibleCards: [IllustratorCard] = []
   private let pageSize = 16
   
-  init(getIllustratorCardsUseCase: any GetIllustratorCardsUseCaseProtocol) {
-    self.getIllustratorCardsUseCase = getIllustratorCardsUseCase
+  init(useCases: SearchUseCases) {
+    self.useCases = useCases
   }
   
   func search() {
     Task {
-      let result = try await getIllustratorCardsUseCase.execute(name: searchText)
+      let result = try await useCases.getIllustratorCardsUseCase.execute(name: searchText)
       self.cards = result.cards
       self.visibleCards = Array(cards.prefix(pageSize))
     }
